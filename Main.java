@@ -5,7 +5,7 @@ class Main
 {
 	public static boolean runIsScored(float prob)
 	{
-		int n=(int)prob;
+		int n=(int) prob;
 		Random random = new Random();
 		if(random.nextInt(100)<=n)
 			return true;
@@ -21,28 +21,28 @@ class Main
 		// importing database
 		
 		// importing balls and modifier data
-		Map<String, Integer> ball=new HashMap<String, Integer>();
+		Map<String, Float> ball=new HashMap<String, Float>();
 		
-		ball.put("Full toss", (Integer)4);
-		ball.put("Yorker", (Integer)3);
-		ball.put("Out-swinger",(Integer)3);
-		ball.put("In-swinger",(Integer)2);
-		ball.put("Bouncer", (Integer)4);
-		ball.put("Slower Ball",(Integer)2);
+		ball.put("Full toss", (float)4);
+		ball.put("Yorker", (float)3);
+		ball.put("Out-swinger",(float)3);
+		ball.put("In-swinger",(float)2);
+		ball.put("Bouncer", (float)4);
+		ball.put("Slower Ball",(float)2);
 		
 		//Importing shot and modifier data
-		Map <String, Integer> shotMod=new HashMap<String, Integer>();
+		Map <String, Float> shotMod=new HashMap<String, Float>();
 		
-		shotMod.put("Defend", (Integer)5);
-		shotMod.put("Run",(Integer)7);
-		shotMod.put("Run Fast", (Integer)6);
-		shotMod.put("Cover Drive", (Integer)7);
-		shotMod.put("On Drive",(Integer)5);
-		shotMod.put("Straight Drive",(Integer)6);
-		shotMod.put("Square Cut",(Integer)7);
-		shotMod.put("Pull",(Integer)8);
-		shotMod.put("Hook", (Integer)7);
-		shotMod.put("Helicopter",(Integer)8);
+		shotMod.put("Defend", (float)5);
+		shotMod.put("Run",(float)7);
+		shotMod.put("Run Fast", (float)6);
+		shotMod.put("Cover Drive", (float)7);
+		shotMod.put("On Drive",(float)5);
+		shotMod.put("Straight Drive",(float)6);
+		shotMod.put("Square Cut",(float)7);
+		shotMod.put("Pull",(float)8);
+		shotMod.put("Hook", (float)7);
+		shotMod.put("Helicopter",(float)8);
 		
 		//Importing shot and possible runs data
 		Map <String, Integer> shotRuns=new HashMap<String, Integer>();
@@ -74,7 +74,7 @@ class Main
 		
 	
 	
-	//letsplay
+	
 		
 		//taking input for mode
 		
@@ -93,9 +93,9 @@ class Main
 				
 				//boosting the modifiers.
 				
-				ball.replace("Slower ball",(int)ball.get("Slower ball")+ (int)0.2*ball.get("Slower ball"));
-				ball.replace("Bouncer",(int)ball.get("Bouncer")+ (int)0.2*ball.get("Bouncer"));
-				ball.replace("Out-swinger",(int)ball.get("Out-swinger")+ (int)0.2*ball.get("Out-swinger"));
+				ball.replace("Slower ball",ball.get("Slower ball")+ 0.2f*ball.get("Slower ball"));
+				ball.replace("Bouncer",ball.get("Bouncer")+ 0.2f*ball.get("Bouncer"));
+				ball.replace("Out-swinger",ball.get("Out-swinger")+ 0.2f*ball.get("Out-swinger"));
 				
 				
 			}
@@ -103,8 +103,8 @@ class Main
 			{
 				//then the bowler is agressive
 				//boosting the modifiers
-				ball.replace("Full Toss",ball.get("Full Toss")+(int)0.2f*ball.get("Full Toss"));
-				ball.replace("In-swinger",ball.get("In-swinger")+ (int)0.2f*ball.get("In-swinger"));
+				ball.replace("Full Toss",ball.get("Full Toss")+ 0.2f*ball.get("Full Toss"));
+				ball.replace("In-swinger",ball.get("In-swinger")+ 0.2f*ball.get("In-swinger"));
 			}
 			
 			//selecting batsmen type
@@ -112,19 +112,19 @@ class Main
 			
 			String bat_type=sc.next();
 			if(bat_type=="Passive") {
-				shotMod.replace("Defend",shotMod.get("Defend")+(int)0.2f*shotMod.get("Defend"));
-				shotMod.replace("Run", (int)1.02f*shotMod.get("Run"));
-				shotMod.replace("Run Fast", (int)1.02f*shotMod.get("Run Fast"));
-				shotMod.replace("Cover Drive", (int)1.02f*shotMod.get("Cover Drive"));
-				shotMod.replace("On Drive",(int) 1.02f*shotMod.get("On Drive"));
-				shotMod.replace("Straight Drive", (int)1.02f*shotMod.get("Straight Drive"));
+				shotMod.replace("Defend",shotMod.get("Defend")+0.2f*shotMod.get("Defend"));
+				shotMod.replace("Run", 1.02f*shotMod.get("Run"));
+				shotMod.replace("Run Fast", 1.02f*shotMod.get("Run Fast"));
+				shotMod.replace("Cover Drive", 1.02f*shotMod.get("Cover Drive"));
+				shotMod.replace("On Drive", 1.02f*shotMod.get("On Drive"));
+				shotMod.replace("Straight Drive", 1.02f*shotMod.get("Straight Drive"));
 			}
 			else if(bat_type=="Agressive")
 			{
-				shotMod.replace("Pull", (int)1.02f*shotMod.get("Pull"));
-				shotMod.replace("Hook",(int) 1.02f*shotMod.get("Hook"));
-				shotMod.replace("Helicopter", (int)1.02f*shotMod.get("Helicopter"));
-				shotMod.replace("Square Cut",(int) 1.02f*shotMod.get("Square Cut"));
+				shotMod.replace("Pull", 1.02f*shotMod.get("Pull"));
+				shotMod.replace("Hook", 1.02f*shotMod.get("Hook"));
+				shotMod.replace("Helicopter", 1.02f*shotMod.get("Helicopter"));
+				shotMod.replace("Square Cut", 1.02f*shotMod.get("Square Cut"));
 			}
 			
 			int current_runs=0;
@@ -148,7 +148,7 @@ class Main
 					{
 						System.out.print(Slower_Ball[l]+" ");
 						System.out.print(Slower_Ball[l]+"--");
-						prob=(float)(shotMod.get(Slower_Ball[l])-ball.get("Slower Ball"))/100;
+						prob=(shotMod.get(Slower_Ball[l])-ball.get("Slower Ball"))/100;
 						
 						System.out.print(shotRuns.get(Slower_Ball[l])+"--"+prob);
 					}
@@ -163,7 +163,7 @@ class Main
 					for(int l=0;l<5;l++)
 					{
 						System.out.print(Bouncer[l]+"--");
-						prob=(float)(shotMod.get(Bouncer[l])-ball.get("Bouncer"))/100;
+						prob=(shotMod.get(Bouncer[l])-ball.get("Bouncer"))/100;
 						System.out.print(shotRuns.get(Bouncer[l])+"--"+prob);
 					}
 					
@@ -178,7 +178,7 @@ class Main
 					{
 						System.out.print(Out_swinger[l]+"--");
 						System.out.print(Out_swinger[l]+"--");
-						prob=(float)(shotMod.get(Out_swinger[l])-ball.get("Out-swinger"))/100;
+						prob=(shotMod.get(Out_swinger[l])-ball.get("Out-swinger"))/100;
 						System.out.print(shotRuns.get(Out_swinger[l])+"--"+prob);
 					}
 					
@@ -192,7 +192,7 @@ class Main
 					{
 						System.out.print(Full_toss[l]+" ");
 						System.out.print(Full_toss[l]+"--");
-						prob=(float)(shotMod.get(Full_toss[l])-ball.get("Out-swinger"))/100;
+						prob=(shotMod.get(Full_toss[l])-ball.get("Out-swinger"))/100;
 						System.out.print(shotRuns.get(Full_toss[l])+"--"+prob);
 					}
 					
@@ -206,14 +206,14 @@ class Main
 					{
 						System.out.print(In_swinger[l]+" ");
 						System.out.print(In_swinger[l]+"--");
-						prob=(float)(shotMod.get(In_swinger[l])-ball.get("Out-swinger"))/100;
+						prob=(shotMod.get(In_swinger[l])-ball.get("Out-swinger"))/100;
 						System.out.print(shotRuns.get(In_swinger[l])+"--"+prob);
 					}
 				}
 				
 				String selected_shot=sc.next();
 				
-				prob=(float)(shotMod.get(selected_shot)-ball.get(balltype))/100;
+				prob=(shotMod.get(selected_shot)-ball.get(balltype))/100;
 				
 				if(runIsScored(prob))
 				{
